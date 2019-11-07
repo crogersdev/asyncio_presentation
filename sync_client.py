@@ -2,9 +2,12 @@
 import requests
 import time
 
-def fetch():
-    return requests.get('http://httpbin.org/get')
+url = 'http://httpbin.org/get'
 
+def fetch(url):
+    return requests.get(url)
+
+print(f'reaching out to {url}')
 start = time.time()
-print(fetch())
-print(f'elapsed: {time.time() - start} seconds')
+print(fetch(url))
+print(f'elapsed time: {time.time() - start} seconds')
