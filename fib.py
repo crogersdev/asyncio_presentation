@@ -6,7 +6,7 @@ import time
 
 async def async_fib(n):
     if n <= 1:
-        return 1
+        return n
     else:
         return await async_fib(n - 1) + await async_fib(n - 2)
 
@@ -17,26 +17,27 @@ def sync_fib(n):
         return sync_fib(n - 1) + sync_fib(n - 2)
 
 def gen_fib(n):
-    if n <= 1:
-        yield 1
-    else:
-        yield gen_fib(n - 1) + gen_fib(n - 2)
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
 
 def time_and_run_gen_fib(fib_num):
     start = time.time()
-    gen_fib(fib_num)
-    print(f'gen_fib time elapsed: {time.time() - start} seconds')
+    seq = list(gen_fib(fib_num))
+    f = sum(seq[len(seq)-2:len(seq)])
+    print(f'  gen_fib({fib_num}) = {f};  time elapsed: {time.time() - start} seconds')
 
 def time_and_run_sync_fib(fib_num):
     start = time.time()
-    sync_fib(fib_num)
-    print(f'sync_fib time elapsed: {time.time() - start} seconds')
+    f = sync_fib(fib_num)
+    print(f' sync_fib({fib_num}) = {f};  time elapsed: {time.time() - start} seconds')
 
 def time_and_run_async_fib(fib_num):
     loop = asyncio.get_event_loop()
     start = time.time()
-    loop.run_until_complete(async_fib(fib_num))
-    print(f'async_fib elapsed: {time.time() - start} seconds')
+    f = loop.run_until_complete(async_fib(fib_num))
+    print(f'async_fib({fib_num}) = {f};  time elapsed: {time.time() - start} seconds')
 
 
 if __name__ == '__main__':
