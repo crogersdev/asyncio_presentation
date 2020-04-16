@@ -2,7 +2,7 @@
 for offsite lightning talk
 
 ## What?
-I gave a 10 minute talk on python asyncio at OrbitalInsights 2019 Developer offsite.
+I gave a 10 minute talk on python asyncio at OrbitalInsight's 2019 Developer offsite.
 
 Slides here: 
 https://docs.google.com/presentation/d/1HzI9zvITUlg-vwylrsmYiwQQgEvTpY6PwFnBCV9E-jg/edit?usp=sharing
